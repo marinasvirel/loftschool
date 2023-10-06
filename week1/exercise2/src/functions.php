@@ -73,15 +73,5 @@ function task7(string $str)
 
 function task8()
 {
-  echo $data = file_get_contents("text.txt");
+  echo file_get_contents("text.txt");
 }
-
-
-
-
-
-
-
-
-// echo "<pre>";
-// var_dump($arr);
