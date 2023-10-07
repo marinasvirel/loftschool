@@ -5,7 +5,8 @@ function task1(array $arr, bool $print = false): string
   $str = "";
   foreach ($arr as $item) {
     if ($print === true) {
-      $str .= "$item ";
+      echo implode(" ", $arr);
+      break;
     } else {
       echo "<p>$item</p>";
     }
@@ -13,41 +14,53 @@ function task1(array $arr, bool $print = false): string
   return $str;
 }
 
-function task2(string $operation, int ...$args): int
+function task2($operation, ...$args)
 {
-  if ($operation === "+") {
-    $result = 0;
-  } elseif ($operation === "*") {
-    $result = 1;
-  }
-
+  $first = array_shift($args);
   foreach ($args as $item) {
-    if ($operation === "+") {
-      $result += $item;
-    }
-    if ($operation === "*") {
-      $result *= $item;
+    if (!is_int($item) && !is_float($item)) {
+      return "Ошибка: не число";
+    } elseif ($item === 0) {
+      return "Не надо 0";
+    } elseif (!is_string($operation)) {
+      return "Ошибка: не строка";
+    } elseif ($operation !== "+" && $operation !== "-" && $operation !== "*" && $operation !== "/") {
+      return "Ошибка: не оператор";
+    } elseif ($operation === "+") {
+      return array_sum($args);
+    } elseif ($operation === "*") {
+      return array_product($args);
+    } elseif ($operation === "-") {
+      return $first -= array_sum($args);
+    } elseif ($operation === "/") {
+      foreach ($args as $item) {
+        $result = $first /= $item;
+      }
+      return $result;
     }
   }
-  return $result;
 }
 
-function task3(int $n, int $n2)
+function task3($n, $n2)
 {
-  if ($n > 0 && $n < 10 && $n2 > 0 && $n2 < 10) {
-    echo "<table>";
-    for ($i = 1; $i <= $n; $i++) {
-      echo "<tr>";
-      for ($j = 1; $j <= $n2; $j++) {
-        echo "<td>";
-        echo $i * $j;
-        echo "</td>";
-      }
-      echo "</tr>";
-    }
-    echo "</table>";
+  if (!is_int($n) || !is_int($n2)) {
+    echo "Не число";
   } else {
-    echo "Число должно быть от 1 до 10";
+    if ($n > 0 && $n < 10 && $n2 > 0 && $n2 < 10) {
+      echo "<table border = 1>";
+      for ($i = 1; $i <= $n; $i++) {
+        echo "<tr>";
+        for ($j = 1; $j <= $n2; $j++) {
+          echo "<td>";
+          echo $i * $j;
+          echo "</td>";
+        }
+        echo "</tr>";
+      }
+      echo "</table>";
+    } else {
+      echo "Число должно быть от 1 до 10";
+    }
   }
 }
 
