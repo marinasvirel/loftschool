@@ -2,13 +2,12 @@
 
 class Hourly extends Rate
 {
+  public $priceKm = 0;
   public $priceMinutes = 200 / 60;
 
-  public function calc()
+  public function __construct($time, $distance)
   {
-    if ($this->time < 60) {
-      $this->time = 60;
-    }
-    return ($this->time * $this->priceMinutes);
+    parent::__construct($time, $distance);
+    $this->time = $this->time - $this->time % 60 + 60;
   }
 }

@@ -1,17 +1,17 @@
 <?php
 
-class GPS extends Service
+class GPS implements iService
 {
-  public $hours;
-  public $price = 15;
+  public $priceHour;
 
-  public function __construct($hours)
+  public function __construct($priceHour)
   {
-    $this->hours = $hours;
+    $this->priceHour = $priceHour;
   }
 
-  public function calc()
+  public function apply(iRate $rate, &$price)
   {
-    return $this->price * $this->hours;
+    $hours = ceil($rate->get_time() / 60);
+    $price += $this->priceHour * $hours;
   }
 }

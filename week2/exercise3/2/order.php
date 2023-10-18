@@ -14,10 +14,7 @@ if($user){
   $user_id = add_user($pdo, $email);
 }
 
-add_order($pdo, $user_id, $address);
-
 $orderId = add_order($pdo, $user_id, $address);
-
 
 echo "
 Спасибо, ваш заказ будет доставлен по адресу: $address <br>

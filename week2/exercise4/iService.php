@@ -2,5 +2,5 @@
 
 interface iService
 {
-  public function calc();
+  public function apply(iRate $rate, &$price);
 }
