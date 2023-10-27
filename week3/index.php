@@ -9,10 +9,13 @@ spl_autoload_register(function ($class) {
 });
 
 include "views/register.php";
+include "views/auth.php";
 
 $user = new User();
 $userController = new UserController();
 $userController->register_action();
+$userController->auth_action();
+
 
 // $_SESSION['id'] = 1;
 
@@ -29,4 +32,4 @@ $userController->register_action();
 
 
 // echo "<pre>";
-// var_dump($user->check_email());
+// var_dump($_POST);

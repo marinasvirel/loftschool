@@ -23,7 +23,8 @@ abstract class Model
     return $stmt->fetch($db::FETCH_ASSOC);
   }
 
-  public function check_field($table, $column, $value){
+  public function check_field($table, $column, $value)
+  {
     $db = $this->connect();
     $sql = "SELECT $column FROM $table WHERE $column = :column";
     $stmt = $db->prepare($sql);
