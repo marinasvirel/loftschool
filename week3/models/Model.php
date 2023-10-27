@@ -22,4 +22,12 @@ abstract class Model
     $stmt->execute(['column' => $value]);
     return $stmt->fetch($db::FETCH_ASSOC);
   }
+
+  public function check_field($table, $column, $value){
+    $db = $this->connect();
+    $sql = "SELECT $column FROM $table WHERE $column = :column";
+    $stmt = $db->prepare($sql);
+    $stmt->execute(['column' => $value]);
+    return $stmt->fetch($db::FETCH_ASSOC);
+  }
 }
