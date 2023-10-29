@@ -10,6 +10,7 @@ spl_autoload_register(function ($class) {
 
 include "views/register.php";
 include "views/auth.php";
+include "views/message.php";
 
 $user = new User();
 $userController = new UserController();
