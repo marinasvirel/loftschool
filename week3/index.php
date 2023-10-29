@@ -1,36 +1,27 @@
 <?php
-//session_start();
+session_start();
 
 use controllers\UserController;
-use models\User;
 
 spl_autoload_register(function ($class) {
   require_once "{$class}.php";
 });
 
-include "views/register.php";
-include "views/auth.php";
-include "views/message.php";
 
-$user = new User();
 $userController = new UserController();
-$userController->register_action();
-$userController->auth_action();
 
 
-// $_SESSION['id'] = 1;
-
-// $_SESSION = [];
-
-// $_SESSION['id'] = 2;
-
-// if ($_SESSION) {
-//   echo "blog";
-// } else {
-//   echo "form";
-// }
+if ($_SESSION) {
+  include "views/message.php";
+  $userController->exit();
+} else {
+  include "views/register.php";
+  include "views/auth.php";
+  $userController->register_action();
+  $userController->auth_action();
+}
 
 
 
 // echo "<pre>";
-// var_dump($_POST);
+// var_dump($_SESSION);

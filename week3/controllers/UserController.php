@@ -15,7 +15,7 @@ class UserController
           if ($_POST['password'] === $_POST['password2']) {
             $last = $user->create();
             $_SESSION['id'] = $last;
-            echo "Регистрация прошла успешно id = $last";
+            header("Location: index.php");
           } else {
             echo "Пароли не совпадают";
           }
@@ -35,10 +35,18 @@ class UserController
       $row = $user->select_row("users", "email", $_POST['email']);
       if ($_POST['email'] === $row['email'] && sha1($_POST['password']) === $row['password']) {
         $_SESSION['id'] = $row['id'];
-        echo "успешно id = " . $row['id'];
+        header("Location: index.php");
       } else {
         echo "Неверный логин или пароль";
       }
+    }
+  }
+
+  public function exit()
+  {
+    if (isset($_POST['exit'])) {
+      $_SESSION = [];
+      header("Location: index.php");
     }
   }
 }
