@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+use controllers\BlogController;
 use controllers\MessageController;
 use controllers\UserController;
 use models\Message;
@@ -14,14 +15,16 @@ $user = new User();
 $message = new Message();
 $userController = new UserController();
 $messageController = new MessageController();
+$blogController = new BlogController();
 
 
 if ($_SESSION) {
   include "views/exit.php";
-  include "views/blog.php";
   include "views/message.php";
+  include "views/blog.php";
   $userController->exit_action();
   $messageController->send_action();
+  //$blogController->view_action();
 } else {
   include "views/register.php";
   include "views/auth.php";
@@ -30,4 +33,4 @@ if ($_SESSION) {
 }
 
 // echo "<pre>";
-// var_dump($message->read());
+// var_dump($blogController->message_list());
