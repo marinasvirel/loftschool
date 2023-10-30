@@ -9,6 +9,7 @@ class BlogController
 {
   public function message_list(): array
   {
+    $arr = [];
     $mess = new Message();
     $messages = $mess->read();
     if ($messages) {
@@ -18,9 +19,11 @@ class BlogController
         $name = $row['name'];
         $img = "views/uploads/{$message['img']}";
         $arr[] = [
+          'id' => $message['id'],
           'name' => $name,
-          'img' => $img,
           'text' => $message['text'],
+          'img' => $img,
+          'created' => $message['created'],
         ];
       }
     } else {

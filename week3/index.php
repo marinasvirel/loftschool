@@ -20,11 +20,10 @@ $blogController = new BlogController();
 
 if ($_SESSION) {
   include "views/exit.php";
-  include "views/message.php";
   include "views/blog.php";
+  include "views/message.php";
   $userController->exit_action();
   $messageController->send_action();
-  //$blogController->view_action();
 } else {
   include "views/register.php";
   include "views/auth.php";
