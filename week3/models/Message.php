@@ -22,4 +22,9 @@ class Message extends Model
       'created' => date('Y-m-d H:i:s'),
     ]);
   }
+
+  public function read()
+  {
+    return $this->select_all("messages");
+  }
 }

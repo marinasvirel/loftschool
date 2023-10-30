@@ -3,20 +3,24 @@ session_start();
 
 use controllers\MessageController;
 use controllers\UserController;
+use models\Message;
+use models\User;
 
 spl_autoload_register(function ($class) {
   require_once "{$class}.php";
 });
 
-
+$user = new User();
+$message = new Message();
 $userController = new UserController();
 $messageController = new MessageController();
 
 
 if ($_SESSION) {
   include "views/exit.php";
+  include "views/blog.php";
   include "views/message.php";
-  $userController->exit();
+  $userController->exit_action();
   $messageController->send_action();
 } else {
   include "views/register.php";
@@ -25,7 +29,5 @@ if ($_SESSION) {
   $userController->auth_action();
 }
 
-// move_uploaded_file($_FILES['img']['tmp_name'], "views/uploads/{$_FILES['img']['name']}");
-
 // echo "<pre>";
-// var_dump($_FILES['img']['tmp_name']);
+// var_dump($message->read());

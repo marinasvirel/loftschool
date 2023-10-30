@@ -17,6 +17,11 @@ class User extends Model
     return $this->check_field("users", "email", $_POST['email']);
   }
 
+  public function auth()
+  {
+    return $this->select_row("users", "id", $_SESSION['id']);
+  }
+
   public function create()
   {
     $db = $this->connect();

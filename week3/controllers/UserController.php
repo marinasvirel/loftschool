@@ -42,7 +42,7 @@ class UserController
     }
   }
 
-  public function exit()
+  public function exit_action()
   {
     if (isset($_POST['exit'])) {
       $_SESSION = [];
