@@ -36,6 +36,6 @@ if ($_SESSION) {
 }
 
 
-echo "<pre>";
-//var_dump($blogController->api());
+// echo "<pre>";
+// var_dump($user->is_admin());
 //var_dump($_GET);

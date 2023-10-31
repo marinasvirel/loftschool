@@ -17,7 +17,7 @@ class User extends Model
     return $this->check_field("users", "email", $_POST['email']);
   }
 
-  public function auth()
+  public function auth() // Авторизированный пользователь
   {
     return $this->select_row("users", "id", $_SESSION['id']);
   }
@@ -34,5 +34,13 @@ class User extends Model
       'created' => date('Y-m-d H:i:s'),
     ]);
     return $db->lastInsertId();
+  }
+
+  public function is_admin(): bool
+  {
+    $user = $this->auth();
+    $id = $user['id'];
+    require_once "../config.php";
+    return in_array($id, ADMIN_IDS);
   }
 }

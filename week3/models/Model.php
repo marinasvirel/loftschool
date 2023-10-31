@@ -31,4 +31,12 @@ abstract class Model
     $stmt->execute(['column' => $value]);
     return $stmt->fetch($db::FETCH_ASSOC);
   }
+
+  public function delete_row($table, $row, $value)
+  {
+    $db = $this->connect();
+    $sql = "DELETE FROM $table WHERE $row = $value";
+    $stmt = $db->query($sql);
+    return $stmt;
+  }
 }
