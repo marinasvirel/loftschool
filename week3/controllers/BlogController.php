@@ -20,6 +20,7 @@ class BlogController
         $img = "views/uploads/{$message['img']}";
         $arr[] = [
           'id' => $message['id'],
+          'user_id' => $message['user_id'],
           'name' => $name,
           'text' => $message['text'],
           'img' => $img,
@@ -30,5 +31,18 @@ class BlogController
       echo "Сообщений нет";
     }
     return $arr;
+  }
+
+  public function api()
+  {
+    $user_id = $_GET['id'] ?? null;
+    $arr = [];
+    $list = $this->message_list();
+    foreach ($list as $item) {
+      if ($item['user_id'] == $user_id) {
+        $arr[] = $item;
+      }
+    }
+    echo json_encode(array_slice($arr, -20), JSON_UNESCAPED_UNICODE);
   }
 }

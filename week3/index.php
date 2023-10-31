@@ -19,11 +19,15 @@ $blogController = new BlogController();
 
 
 if ($_SESSION) {
-  include "views/exit.php";
-  include "views/blog.php";
-  include "views/message.php";
-  $userController->exit_action();
-  $messageController->send_action();
+  if ($_GET) {
+    $blogController->api();
+  } else {
+    include "views/exit.php";
+    include "views/blog.php";
+    include "views/message.php";
+    $userController->exit_action();
+    $messageController->send_action();
+  }
 } else {
   include "views/register.php";
   include "views/auth.php";
@@ -31,5 +35,7 @@ if ($_SESSION) {
   $userController->auth_action();
 }
 
-// echo "<pre>";
-// var_dump($blogController->message_list());
+
+echo "<pre>";
+//var_dump($blogController->api());
+//var_dump($_GET);
