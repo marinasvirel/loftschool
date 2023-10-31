@@ -40,7 +40,7 @@ class User extends Model
   {
     $user = $this->auth();
     $id = $user['id'];
-    require_once "../config.php";
+    require_once "config.php";
     return in_array($id, ADMIN_IDS);
   }
 }
